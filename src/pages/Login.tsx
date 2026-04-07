@@ -34,8 +34,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center px-4 bg-background">
       <div className="w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-heading font-bold tracking-tight">QuizForge</h1>
-          <p className="text-muted-foreground mt-2">Test your knowledge with 50 challenging questions</p>
+          <h1 className="text-4xl font-heading font-bold tracking-tight">Quiz</h1>
         </div>
 
         <Card className="border-border">
@@ -93,10 +92,6 @@ export default function Login() {
             </form>
           </CardContent>
         </Card>
-
-        <p className="text-center text-xs text-muted-foreground mt-6">
-          50 questions • 1 hour • Results sent to your email
-        </p>
       </div>
     </div>
   );

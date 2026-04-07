@@ -36,7 +36,7 @@ export function QuestionNavigator({
     <div className="space-y-4">
       <h3 className="font-heading font-semibold text-sm">Question Navigator</h3>
 
-      <div className="grid grid-cols-5 gap-2">
+      <div className="flex justify-around flex-wrap gap-2">
         {questions.map((_, i) => (
           <button
             key={i}

@@ -55,5 +55,4 @@ export const questions: Question[] = [
   { id: 47, text: "What is the SI unit of force?", options: ["Joule", "Watt", "Newton", "Pascal"], correctAnswer: 2 },
   { id: 48, text: "Which blood type is the universal donor?", options: ["A+", "B+", "AB+", "O-"], correctAnswer: 3 },
   { id: 49, text: "What is the speed of sound in air approximately?", options: ["243 m/s", "343 m/s", "443 m/s", "543 m/s"], correctAnswer: 1 },
-  { id: 50, text: "Which is the most abundant gas in Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], correctAnswer: 2 },
 ];

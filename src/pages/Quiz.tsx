@@ -80,7 +80,7 @@ export default function Quiz() {
         </div>
 
         {/* Navigator Sidebar */}
-        <aside className="w-64 border-l border-border p-4 hidden md:block bg-card/50">
+        <aside className="w-96 border-l border-border p-4 hidden md:block bg-card/50">
           <QuestionNavigator
             currentIndex={quiz.currentIndex}
             savedAnswers={quiz.savedAnswers}

@@ -1,46 +1,111 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  /* Fonts */
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  /* Border & Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Core Colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* Quiz Colors */
+  --color-quiz-saved: hsl(var(--quiz-saved));
+  --color-quiz-saved-foreground: hsl(var(--quiz-saved-foreground));
+  --color-quiz-flagged: hsl(var(--quiz-flagged));
+  --color-quiz-flagged-foreground: hsl(var(--quiz-flagged-foreground));
+  --color-quiz-current: hsl(var(--quiz-current));
+  --color-quiz-current-foreground: hsl(var(--quiz-current-foreground));
+  --color-quiz-unanswered: hsl(var(--quiz-unanswered));
+  --color-quiz-unanswered-foreground: hsl(var(--quiz-unanswered-foreground));
+
+  /* Sidebar Colors */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Animations & Keyframes */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-in: slide-in 0.3s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+}
 
 @layer base {
   :root {
-    --font-heading: 'Space Grotesk', system-ui, sans-serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
-
     --accent-color: 221 83% 53%;
-
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
-
     --card: 0 0% 99%;
     --card-foreground: 222 47% 11%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-
     --primary: var(--accent-color);
     --primary-foreground: 0 0% 100%;
-
     --secondary: 214 32% 94%;
     --secondary-foreground: 222 47% 11%;
-
     --muted: 214 32% 96%;
     --muted-foreground: 215 16% 47%;
-
     --accent: 214 32% 96%;
     --accent-foreground: 222 47% 11%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: var(--accent-color);
-
     --radius: 0.625rem;
-
     --quiz-saved: 142 71% 45%;
     --quiz-saved-foreground: 0 0% 100%;
     --quiz-flagged: 38 92% 50%;
@@ -49,7 +114,6 @@
     --quiz-current-foreground: 0 0% 100%;
     --quiz-unanswered: 214 32% 96%;
     --quiz-unanswered-foreground: 215 16% 47%;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -63,35 +127,25 @@
   .dark {
     --background: 222 47% 4%;
     --foreground: 210 40% 98%;
-
     --card: 223 47% 7%;
     --card-foreground: 210 40% 98%;
-
     --popover: 223 47% 7%;
     --popover-foreground: 210 40% 98%;
-
     --primary: var(--accent-color);
     --primary-foreground: 0 0% 100%;
-
     --secondary: 217 33% 14%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217 33% 14%;
     --muted-foreground: 215 20% 65%;
-
     --accent: 217 33% 14%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: var(--accent-color);
-
     --quiz-unanswered: 217 33% 14%;
     --quiz-unanswered-foreground: 215 20% 65%;
-
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -107,12 +161,10 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
