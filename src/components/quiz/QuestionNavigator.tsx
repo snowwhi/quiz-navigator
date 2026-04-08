@@ -49,7 +49,7 @@ export function QuestionNavigator({
       </div>
 
       <div className="space-y-2 pt-3 border-t border-border">
-        <p className="text-xs text-muted-foreground font-medium">Legend</p>
+        <p className="text-base text-foreground font-bold">Legend</p>
         <div className="flex flex-wrap gap-3 text-xs">
           <span className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-sm bg-primary" /> Current
@@ -66,9 +66,9 @@ export function QuestionNavigator({
         </div>
       </div>
 
-      <div className="space-y-1 pt-2 text-xs text-muted-foreground">
-        <p>Saved: <span className="font-semibold text-foreground">{savedCount}</span> / {questions.length}</p>
-        <p>Flagged: <span className="font-semibold text-foreground">{flaggedCount}</span></p>
+      <div className="space-y-1 pt-6 text-xs text-foreground flex gap-8">
+        <p className="w-fit">Saved: <span className="font-bold text-foreground">{savedCount}</span> / {questions.length}</p>
+        <p className="w-fit">Flagged: <span className="font-bold text-foreground">{flaggedCount}</span></p>
       </div>
     </div>
   );

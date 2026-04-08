@@ -55,22 +55,19 @@ export function QuizHeader({ timeRemaining, username, onSaveProgress, onSubmit }
     <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="flex items-center justify-between px-4 h-14">
         <div className="flex items-center gap-3">
-          <h1 className="font-heading font-bold text-lg">QuizForge</h1>
+          <h1 className="font-heading font-bold text-lg">QuizDashBoard</h1>
           <span className="text-sm text-muted-foreground hidden sm:block">
             Welcome, <span className="font-semibold text-foreground">{username}</span>
           </span>
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Timer */}
           <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-mono text-sm font-semibold ${
             isLow ? "bg-destructive/10 text-destructive animate-pulse" : "bg-muted text-foreground"
           }`}>
             <Timer className="h-4 w-4" />
             {formatTime(timeRemaining)}
           </div>
-
-          {/* Accent Color */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="h-9 w-9">
