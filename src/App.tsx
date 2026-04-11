@@ -9,9 +9,9 @@ import Result from "./pages/Result";
 import NotFound from "./pages/NotFound";
 import {GoogleOAuthProvider} from '@react-oauth/google'
 const queryClient = new QueryClient();
-
+  const apiKey = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const App = () => (
-  <GoogleOAuthProvider>
+  <GoogleOAuthProvider clientId={apiKey}>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
