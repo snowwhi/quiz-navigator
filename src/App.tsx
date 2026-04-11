@@ -7,10 +7,11 @@ import Login from "./pages/Login";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import NotFound from "./pages/NotFound";
-
+import {GoogleOAuthProvider} from '@react-oauth/google'
 const queryClient = new QueryClient();
 
 const App = () => (
+  <GoogleOAuthProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -26,6 +27,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </GoogleOAuthProvider>
 );
 
 export default App;
