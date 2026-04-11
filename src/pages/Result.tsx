@@ -1,15 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"; // Added useRef
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { DotLottiePlayer } from '@dotlottie/react-player';
 import success from "../assets/success.lottie"
-import { questions } from "@/data/questions";
+import { questions } from "@/data/questions"
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 export default function Result() {
   const navigate = useNavigate();
   const [score, setScore] = useState({ correct: 0, total: 0, savedCount: 0 });
   const [user, setUser] = useState({ username: "", email: "" });
+  const hasSentEmail = useRef(false);
+
+  const sendEmail = (userData: any, scoreData: any) => {
+    const templateParams = {
+      to_email: userData.email,
+      user_name: userData.username,
+      score: `${scoreData.correct} / ${scoreData.total}`,
+      percentage: `${Math.round((scoreData.correct / scoreData.total) * 100)}%`
+    };
+
+    // FIXED: Passed arguments as simple strings in the correct order
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+    .then(() => toast.success("Results sent to your email!"))
+    .catch((err) => {
+      console.error("EmailJS Error:", err);
+      toast.error("Failed to send email.");
+    });
+  };
 
   useEffect(() => {
     const userData = sessionStorage.getItem("quiz_user");
@@ -25,16 +49,26 @@ export default function Result() {
       const parsedQuiz = JSON.parse(quizData);
       setUser(parsedUser);
 
-      let correct = 0;
+      let correctCount = 0;
       const savedAnswers = parsedQuiz.savedAnswers || {};
       for (const [idx, ans] of Object.entries(savedAnswers)) {
-        if (questions[Number(idx)]?.correctAnswer === ans) correct++;
+        if (questions[Number(idx)]?.correctAnswer === ans) correctCount++;
       }
-      setScore({
-        correct,
+
+      const finalScore = {
+        correct: correctCount,
         total: questions.length,
         savedCount: Object.keys(savedAnswers).length,
-      });
+      };
+
+      setScore(finalScore);
+
+      // FIXED: Trigger the email sending once the score is calculated
+      if (!hasSentEmail.current && parsedUser.email) {
+        sendEmail(parsedUser, finalScore);
+        hasSentEmail.current = true;
+      }
+
     } catch (e) {
       toast.error("Error loading results");
       navigate("/login");

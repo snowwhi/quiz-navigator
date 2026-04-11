@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
-import { GoogleLogin } from "@react-oauth/google"; // Switched from useGoogleLogin
+import { GoogleLogin } from "@react-oauth/google"; 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
